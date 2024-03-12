@@ -1,0 +1,163 @@
+:root {
+  --ff-madimi: 'Madimi One', sans-serif;
+  --main-fs: 2rem;
+  --secondary-fs: 1.5rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--ff-madimi);
+}
+
+html {
+  color-scheme: dark light;
+}
+
+#root {
+  min-height: 100dvh;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  height: 80dvh;
+  padding-inline: 1rem;
+  width: 100%;
+}
+
+.formula-wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+}
+
+.input-formula {
+  font-size: var(--main-fs);
+  width: 100%;
+  padding-block: 0.5rem;
+  text-align: center;
+  border-radius: 2rem;
+  border: none;
+}
+.input-formula:focus {
+  outline: none;
+}
+
+.submit-formula,
+.calculate-btn {
+  font-size: var(--main-fs);
+  padding-inline: 2rem;
+  padding-block: 0.4rem;
+  border-radius: 2rem;
+  text-shadow: 0 0 0.5rem black;
+  background-color: transparent;
+}
+
+.submit-formula {
+  border: 0.2rem solid rgb(93, 72, 212);
+  color: rgb(93, 72, 212);
+  transition: color 0.15s, border-color 0.15s;
+}
+.submit-formula.pressed,
+.submit-formula:active {
+  color: white;
+  border-color: white;
+}
+
+.active-formula {
+  text-align: center;
+  font-size: var(--secondary-fs);
+  height: 1.9375rem;
+  grid-column: 2;
+}
+
+.buttom-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 75%;
+}
+
+.variables-wrapper {
+  display: grid;
+  width: 60%;
+  height: 100%;
+  background-color: rgb(27, 27, 39);
+  padding: 1.5rem;
+  border-radius: 2rem;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: min-content;
+  gap: 0.7rem 1rem;
+  overflow-y: scroll;
+}
+.variables-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.variables-wrapper > * {
+  width: 100%;
+  font-size: var(--secondary-fs);
+  padding-block: 0.2rem;
+  text-align: center;
+  border: none;
+  border-radius: 0.3rem;
+}
+.variables-wrapper > *:focus {
+  outline: none;
+}
+.variables-wrapper > *::-webkit-outer-spin-button,
+.variables-wrapper > *::-webkit-inner-spin-button {
+  display: none;
+}
+
+.answer-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content;
+  gap: 4rem;
+}
+
+.calculate-btn {
+  font-size: var(--secondary-fs);
+  border: 0.2rem solid rgb(50, 38, 112);
+  color: rgb(50, 38, 112);
+}
+.calculate-btn.pressed,
+.calculate-btn:active {
+  color: white;
+  border-color: white;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.solution-tab,
+.answer-tab {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  height: 2.625rem;
+  text-align: center;
+  text-shadow: 0 0 0.5rem black;
+  text-decoration: underline;
+}
+
+.solution-tab {
+  color: lightcoral;
+}
+
+.answer-tab {
+  color: rgb(19, 156, 19);
+}
+
+@media (width <= 425px) {
+  :root {
+    --main-fs: 1.5rem;
+    --secondary-fs: 1rem;
+  }
+
+  .submit-formula,
+  .calculate-btn {
+    padding-inline: 1rem;
+  }
+}

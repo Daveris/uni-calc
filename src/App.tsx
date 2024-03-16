@@ -56,6 +56,23 @@ const App = () => {
     const variablesInputs = variablesWrapperRef.current
       ?.children as HTMLCollectionOf<HTMLInputElement>
 
+    //add multiplication syntax
+
+    const accumulator = []
+
+    for (let i = 0; i < solve.length; i++) {
+      if (solve[i].match(/[a-z]/g)?.length && solve[i + 1]) {
+        if (solve[i + 1].match(/[a-z]/g)?.length) accumulator.unshift(i)
+      }
+    }
+
+    for (let i = 0; i < accumulator.length; i++) {
+      solve =
+        solve.slice(0, accumulator[i] + 1) +
+        '*' +
+        solve.slice(accumulator[i] + 1)
+    }
+
     if (variablesInputs) {
       for (let i = 0; i < variablesInputs.length; i++) {
         solve = solve.replaceAll(

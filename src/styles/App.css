@@ -82,7 +82,7 @@ html {
   height: 75%;
 }
 
-.variables-wrapper {
+.variables-wrapper-main {
   display: grid;
   width: 60%;
   height: 100%;
@@ -94,11 +94,15 @@ html {
   gap: 0.7rem 1rem;
   overflow-y: scroll;
 }
-.variables-wrapper::-webkit-scrollbar {
+.variables-wrapper-main::-webkit-scrollbar {
   display: none;
 }
 
-.variables-wrapper > * {
+.variables-wrapper {
+  position: relative;
+}
+
+.variables-wrapper > input {
   width: 100%;
   font-size: var(--secondary-fs);
   padding-block: 0.2rem;
@@ -106,12 +110,21 @@ html {
   border: none;
   border-radius: 0.3rem;
 }
-.variables-wrapper > *:focus {
+.variables-wrapper > input:focus {
   outline: none;
 }
-.variables-wrapper > *::-webkit-outer-spin-button,
-.variables-wrapper > *::-webkit-inner-spin-button {
+.variables-wrapper > input::-webkit-outer-spin-button,
+.variables-wrapper > input::-webkit-inner-spin-button {
   display: none;
+}
+
+.variables-wrapper > span {
+  font-size: var(--secondary-fs);
+  color: violet;
+  left: 5%;
+  top: 50%;
+  translate: 0 -50%;
+  position: absolute;
 }
 
 .answer-wrapper {

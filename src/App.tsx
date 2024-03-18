@@ -9,7 +9,7 @@ const App = () => {
   const [result, setResult] = useState({ solution: '', answer: '' })
 
   const inputFormulaRef = useRef<HTMLInputElement>(null)
-  const variablesWrapperRef = useRef<HTMLDivElement>(null)
+  const variablesWrapperMainRef = useRef<HTMLDivElement>(null)
 
   const isPlayingAnimation = useRef(false)
   const playEmptyAnimation = (msg: string) => {
@@ -53,8 +53,20 @@ const App = () => {
   const handleCalculate = () => {
     let solve = inputFormula
 
-    const variablesInputs = variablesWrapperRef.current
-      ?.children as HTMLCollectionOf<HTMLInputElement>
+    const variablesWrappers = [
+      ...(variablesWrapperMainRef.current
+        ?.children as HTMLCollectionOf<HTMLDivElement>),
+    ]
+
+    const variablesInputs = variablesWrappers.reduce<HTMLInputElement[]>(
+      (acc, v) => {
+        const inputChild = v.firstChild as HTMLInputElement
+        acc.push(inputChild)
+
+        return acc
+      },
+      []
+    )
 
     //add multiplication syntax
 
@@ -126,15 +138,20 @@ const App = () => {
 
         <div className='buttom-container'>
           <div
-            className='variables-wrapper'
-            ref={variablesWrapperRef}
+            className='variables-wrapper-main'
+            ref={variablesWrapperMainRef}
           >
             {inputVariables.map(v => (
-              <input
+              <div
+                className='variables-wrapper'
                 key={v}
-                placeholder={v}
-                type='number'
-              />
+              >
+                <input
+                  placeholder={v}
+                  type='number'
+                />
+                <span>{v}</span>
+              </div>
             ))}
           </div>
 

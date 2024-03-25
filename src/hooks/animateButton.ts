@@ -7,7 +7,9 @@ export function animateButtonClicks() {
     const buttonClasses = ['[data-submit-btn]', '[data-calculate-btn]']
 
     buttonClasses.forEach(v => {
-      const element = document.querySelector(v) as HTMLElement
+      const element = document.querySelector<HTMLButtonElement>(v)
+
+      if (!element) return
 
       element.ontouchstart = () => {
         element.classList.add('pressed')

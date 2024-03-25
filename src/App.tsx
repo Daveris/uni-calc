@@ -44,7 +44,7 @@ const App = () => {
       inputFormulaRef.current.value = ''
     } else {
       //else if its empty
-      if (!isPlayingAnimation.current) playEmptyAnimation('......bruh')
+      if (!isPlayingAnimation.current) playEmptyAnimation('..x.o.x..')
 
       inputFormulaRef.current?.focus()
     }
@@ -68,8 +68,26 @@ const App = () => {
       []
     )
 
-    //add multiplication syntax
+    //return an error if variables is empty
+    let shouldCancel = false
+    for (let i = 0; i < variablesInputs.length; i++) {
+      if (!variablesInputs[i].value) {
+        variablesInputs[i].classList.add('empty')
 
+        variablesInputs[i].addEventListener(
+          'transitionend',
+          () => {
+            variablesInputs[i].classList.remove('empty')
+          },
+          { once: true }
+        )
+
+        shouldCancel = true
+      }
+    }
+    if (shouldCancel) return
+
+    //add multiplication syntax
     const accumulator = []
 
     for (let i = 0; i < solve.length; i++) {
@@ -149,6 +167,7 @@ const App = () => {
                 <input
                   placeholder={v}
                   type='number'
+                  required
                 />
                 <span>{v}</span>
               </div>
